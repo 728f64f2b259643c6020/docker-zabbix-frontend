@@ -11,6 +11,14 @@ If you want to build the image with a specific version of the Zabbix Frtoned (3.
 
     docker build --build-arg ZBX_VERSION=3.2.0 -t gcavalcante8808/zabbix-server .
 
+Simple Usage
+------------
+
+If you just want to create a Zabbix Service from scratch, check for the compose files and instructions at the following project:
+
+https://github.com/gcavalcante8808/docker-zabbix-server
+
+
 Usage
 -----
 
@@ -34,9 +42,6 @@ With all this information, you can now run the container:
 
     docker run -d --name zabbix-frontend -e DB_HOST=192.168.1.100 -e DB_PORT=5432 -e ZBX_SERVER=192.168.1.101 -e DB_NAME=zabbix -e DB_PASS=zabbix gcavalcante8808/zabbix-frontend
 
-If you need a complete set of tools to build an server from scratch, you can the follow 'Meta' Repository:
-
-https://github.com/gcavalcante8808/docker-zabbix
 
 Author
 ------
