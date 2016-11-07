@@ -50,23 +50,27 @@ if [ -z ${ZBX_SERVER_NAME+x} ]; then
 fi
 
 if [ ! -d "/tmp/firstrun" ]; then
-    echo "<?php" > $CONF
-    echo "global \$DB;" >> $CONF
-    echo "\$DB['TYPE'] = '${DB_TYPE}';" >> $CONF
+    mkdir -p /var/www/html/conf
 
-    echo "\$DB['SERVER'] = '${DB_HOST}';" >> $CONF
-    echo "\$DB['PORT'] = '${DB_PORT}';" >> $CONF
-    echo "\$DB['USER'] = '${DB_USER}';" >> $CONF
-    echo "\$DB['PASSWORD'] = '${DB_PASS}';" >> $CONF
-    echo "\$DB['DATABASE'] = '${DB_NAME}';" >> $CONF
-    echo "\$DB['SCHEMA'] = '';" >> $CONF
+cat <<EOT >> $CONF
+<?php
+global \$DB;
+\$DB['TYPE'] = '${DB_TYPE}'; 
+\$DB['SERVER'] = '${DB_HOST}';
+\$DB['PORT'] = '${DB_PORT}';
+\$DB['USER'] = '${DB_USER}';
+\$DB['PASSWORD'] = '${DB_PASS}';
+\$DB['DATABASE'] = '${DB_NAME}';
+\$DB['SCHEMA'] = '';" >> $CONF
 
-    echo "\$ZBX_SERVER = '${ZBX_SERVER}';" >> $CONF
-    echo "\$ZBX_SERVER_PORT = '${ZBX_SERVER_PORT}';" >> $CONF
-    echo "\$ZBX_SERVER_NAME = '${ZBX_SERVER_NAME}';" >> $CONF
+\$ZBX_SERVER = '${ZBX_SERVER}';
+\$ZBX_SERVER_PORT = '${ZBX_SERVER_PORT}';
+\$ZBX_SERVER_NAME = '${ZBX_SERVER_NAME}';
 
-    echo "\$IMAGE_FORMAT_DEFAULT = IMAGE_FORMAT_PNG;" >> $CONF
-    echo "?>" >> $CONF
+\$IMAGE_FORMAT_DEFAULT = IMAGE_FORMAT_PNG;
+?>
+EOT
+
     touch /tmp/firstrun
 fi
 
