@@ -61,7 +61,7 @@ global \$DB;
 \$DB['USER'] = '${DB_USER}';
 \$DB['PASSWORD'] = '${DB_PASS}';
 \$DB['DATABASE'] = '${DB_NAME}';
-\$DB['SCHEMA'] = '';" >> $CONF
+\$DB['SCHEMA'] = ''; 
 
 \$ZBX_SERVER = '${ZBX_SERVER}';
 \$ZBX_SERVER_PORT = '${ZBX_SERVER_PORT}';
